@@ -1,0 +1,62 @@
+---
+title: "R_P_week3"
+author: "cs"
+date: "27/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r echo=TRUE}
+t<-data.frame(c1=1:4,c2=c("a","b","c","d"))
+## filter rows based on column 3 == 2
+t1<-t[t[,1]==2,]
+## below will cause error because it's now defined to filter rows or columns
+t1<-t[t[,1]==2]
+
+```
+
+list current local environment variables  
+```{r echo=TRUE}
+    ls()
+```
+
+clear local environment variables  
+``` {r echo=FALSE}
+    rm(list = ls())
+```
+
+if (NA=="NA") will give NA, not a boolean value. 
+```{r echo=TRUE}
+match("heart attack",c("heart.attack","heart.failure", "pnumonia"))=="NA"
+```
+
+for above, should use is.na() instead
+```{r echo=TRUE}
+is.na(match("heart attack",c("heart.attack","heart.failure", "pnumonia")))
+```
+if statement, below won't work:
+```{r echo=TRUE}
+      num<-"worst"
+      num<-if(num=="best") 1
+      num<-if(num=="worst") 100
+```
+
+below works:
+```{r echo=TRUE}
+      if (num == "best") {
+            num<-1
+      } else if (num == "worst") {
+            num<-nrow(fil)
+      }
+```
+
+use <<- to define global variable. It's useful if functions at the
+same level want to share same variable  
+
+**as.numeric** can't be used to define multiple columns in one dataframe. should use **sapply()** with **as.numeric** to define it.  
